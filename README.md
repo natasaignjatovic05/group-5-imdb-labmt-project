@@ -18,7 +18,9 @@ In addition to happiness ratings, the dataset includes frequency ranks of words 
 These frequency ranks indicate how often each word appears in different types of texts.
 
 The labMT dataset allows researchers to estimate the overall happiness of large collections of text by averaging the happiness scores of the words they contain.
-## Data Preparation
+## Data Preparation: Formalization
+
+"In this project, 'cleaning' is understood as formalization: the process of making our humanistic and interpretive assumptions explicit in code."
 
 ### Cleaning Process
 
@@ -68,10 +70,18 @@ Keeping these missing values allows us to see differences between corpora.
 
 - **lyrics_rank**: Frequency rank of the word in the song lyrics corpus.
 
-### Transition to Quantitative Analysis
+## Transition to Quantitative Analysis: Distributions & Ontology
+Following the **Theory of Data**, we recognize that our cleaned CSV is not a perfect mirror of human language, but a **sample**. We move from treating these scores as "matters of fact" to a **distribution**, acknowledging that "the word is not the thing".
 
-With the dataset cleaned and properly structured, we can now proceed to quantitative exploration. 
+### The Four Moments of the labMT Lexicon
+We audited the `happiness_average` distribution to define the "shape" of our dataset:
 
-The preparation steps ensure that the happiness scores and frequency ranks are stored in consistent numeric formats, allowing reliable statistical analysis. 
+| Moment | Metric | Value | Humanistic Interpretation |
+| :--- | :--- | :--- | :--- |
+| **1st** | **Mean** | [Insert #] | The central "vibe" or baseline happiness of the sample. |
+| **2nd** | **Variance** | [Insert #] | The level of "uncertainty" or spread in the word ratings. |
+| **3rd** | **Skewness** | [Insert #] | Identifies if the lexicon is lopsided (e.g., biased toward happy words). |
+| **4th** | **Kurtosis** | [Insert #] | Indicates the presence of "outlier" words with extreme scores. |
 
-In the following section, we examine the distribution of happiness scores and identify key patterns within the dataset.
+### Preliminary Findings: Regularities & Sampling
+Our audit shows that the "Regularities" we find (mathematical patterns) are a snapshot of the 2011 Mechanical Turk socio-technical moment. By **formalizing** our assumptions—such as converting `--` to `pd.NA`—we have "repaired" this **Convenience Sample** so it can be safely repurposed for inquiry into our own text corpora.
