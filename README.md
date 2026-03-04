@@ -84,5 +84,68 @@ We audited the `happiness_average` distribution to define the "shape" of our dat
 | **3rd** | **Skewness** | [Insert #] | Identifies if the lexicon is lopsided (e.g., biased toward happy words). |
 | **4th** | **Kurtosis** | [Insert #] | Indicates the presence of "outlier" words with extreme scores. |
 
+In the following section, we examine the distribution of happiness scores and identify key patterns within the dataset.
+
+### Interpret the histogram in words
+### Is the distribution centered? skewed? clustered?
+### Identify 1 pattern you did not expect.
+
+The scatterplot shows a large cluster of words around happiness_average ≈ 5–7 with moderate disagreement (SD ≈ 1.1–1.7), meaning most words are rated somewhat positive and people mostly agree. Disagreement is highest for mid-range/neutral-ish words (~3–6) and generally lower at the extremes, where words have clearer emotional meanings. A surprising pattern is the dense “valley” of very low SD near happiness_average ≈ 5, suggesting many neutral everyday words are rated quite consistently.
+
+### Pick 5 of the “most disagreed-about” words and discuss why they might be contested:
+### – ambiguity / multiple meanings
+### – cultural references
+### – slang and time period
+### – irony, profanity, or taboo
+
+1) fucking / fuck / fuckin / fucked / motherfucking / motherfuckers (profanity + context + intensity)
+
+These words are context-dependent:
+	•	Some people rate them very negative because they’re rude/aggressive/offensive.
+	•	Others rate them less negative (or even positive-ish) because they’re used as emphasis (“that’s fucking amazing”), joking, or in friendly slang.
+That split creates huge disagreement → high standard deviation.
+
+2) pussy (multiple meanings + taboo)
+
+This word has very different meanings:
+	•	As an insult (“coward”), it’s negative.
+	•	As a sexual term, people might react with anything from positive to negative depending on comfort, gender norms, and values.
+Because it’s taboo and ambiguous, ratings spread out a lot.
+
+3) slut (taboo + cultural norms)
+
+Strong moral/cultural judgement is involved:
+	•	Some see it as a harsh insult (very negative).
+	•	Others may see it as reclaimed language in some contexts, or interpret it differently based on culture/generation.
+That leads to big disagreement.
+
+4) porn (taboo + personal values)
+
+People’s reactions differ a lot:
+	•	Some associate it with shame/exploitation/addiction → negative.
+	•	Others associate it with pleasure/freedom/neutral media → less negative or even positive.
+So responses vary widely → high SD.
+
+5) capitalism (cultural/political associations)
+
+This one is interesting because it’s not “emotional” in a simple way:
+	•	Some connect it to opportunity/freedom/success → positive.
+	•	Others connect it to inequality/exploitation → negative.
+It’s contested because it’s tied to ideology and lived experience, not a single emotion.
+
+### Connect the qualitative interpretation to the quantitative pattern
+
+A strong pattern in the list is that the highest-disagreement words are mostly:
+	•	taboo/profanity/sex words, or
+	•	culture/ideology-loaded words
+
+Those categories usually create polarized reactions, meaning some raters give very low scores and others give higher scores. That "split” produces a large standard deviation, which is exactly what  the ranking is measuring.
+
+
+### Interpret what your plot suggests about the four corpora.
+The overlap heatmap shows that Google Books and the NYT share the most vocabulary in their top-5000 lists (3414 shared words), suggesting a more similar “edited/formal” register. Lyrics is the most distinct corpus, with the smallest overlaps—especially with NYT (2241)—indicating more genre-specific, emotional, and stylistic language. Twitter sits between them and overlaps relatively strongly with Lyrics (3127), consistent with both being more informal and conversational.
+
+### Give one concrete example of a word that is “common” in one corpus but missing in another, and interpret why that might be.
+Example word: lol — It’s very common on Twitter (rank 42) because it’s internet slang used for quick reactions and humor in casual conversation. It’s missing from Google Books’ top words because published books are more formal/edited and rarely use abbreviations like “lol,” so it doesn’t appear frequently enough to rank in that corpus.
 ### Preliminary Findings: Regularities & Sampling
 Our audit shows that the "Regularities" we find (mathematical patterns) are a snapshot of the 2011 Mechanical Turk socio-technical moment. By **formalizing** our assumptions—such as converting `--` to `pd.NA`—we have "repaired" this **Convenience Sample** so it can be safely repurposed for inquiry into our own text corpora.
