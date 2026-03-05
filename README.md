@@ -155,27 +155,28 @@ Our audit shows that the "Regularities" we find (mathematical patterns) are a sn
 ### Build a small "exhibit" of words
 
 ### code task: create a small table of 20 words 
-|**word**|**category**|**happiness_average**|**happiness_standard_deviation**|
-0|**love**|positive|8.42|1.1082|
-1|**successfull**|positive|8.16|1.08597
-2|**laughing**|positive|8.271.066|
-3|**joy**|positive|8.16|1.0568|
-4|**happiness**|positive|8.44|0.9723|
-5|**suffer**|negative|2.08|1.3827|
-6|**killed**|negative|1.56|1.2316|
-7|**rape**|negative|1.44|0.7866|
-8|**terrorist**|negative|1.3,0.9091|
-9|**virus**|negative|2.08|1.3377|
-10|**fucked**|contested|3.56|2.7117|
-11|**shots**|contested|3.32|2.0146|
-12|**omfg**|contested|4.52|2.0726|
-13|**oprah**|contested|5.42|2.0513|
-14|**christ**|contested|6.16|2.3067|
-15|**ipod**|culturally_loaded|6.56|1.7515|
-16|**taxes**|culturally_loaded|2.7|1.5286|
-17|**usa**|culturally_loaded|6.58|1.8416|
-18|**saddam**|culturally_loaded|2.48|1.568|
-19|**rainbow**|culturally_loaded|8.1|0.9949|
+| **word** | **category** | **happiness_average** | **happiness_standard_deviation** |
+| :--- | :--- | :--- | :--- |
+0 | **love** | positive  |8.42 | 1.1082 |
+1 | **successfull** | positive | 8.16 | 1.08597
+2 | **laughing** | positive | 8.271.066 |
+3 | **joy** | positive | 8.16 | 1.0568 |
+4 | **happiness** | positive | 8.44 | 0.9723 |
+5 | **suffer** | negative | 2.08 | 1.3827 |
+6 | **killed** | negative | 1.56 | 1.2316 |
+7 | **rape** | negative | 1.44 | 0.7866 |
+8 | **terrorist** | negative | 1.3,0.9091 |
+9 | **virus** | negative | 2.08 | 1.3377 |
+10 | **fucked** | contested | 3.56 | 2.7117 |
+11 | **shots** | contested | 3.32 | 2.0146 |
+12 | **omfg** | contested | 4.52 | 2.0726 |
+13 | **oprah** | contested | 5.42 | 2.0513 |
+14 | **christ** | contested | 6.16 | 2.3067 |
+15 | **ipod** | culturally_loaded | 6.56 | 1.7515 |
+16 | **taxes** | culturally_loaded | 2.7 | 1.5286 |
+17 | **usa** | culturally_loaded | 6.58 | 1.8416 |
+18 | **saddam** | culturally_loaded | 2.48 | 1.568 |
+19 | **rainbow** | culturally_loaded | 8.10 | 0.9949 |
 
 ### Intepretation 
 
