@@ -149,3 +149,40 @@ The overlap heatmap shows that Google Books and the NYT share the most vocabular
 Example word: lol — It’s very common on Twitter (rank 42) because it’s internet slang used for quick reactions and humor in casual conversation. It’s missing from Google Books’ top words because published books are more formal/edited and rarely use abbreviations like “lol,” so it doesn’t appear frequently enough to rank in that corpus.
 ### Preliminary Findings: Regularities & Sampling
 Our audit shows that the "Regularities" we find (mathematical patterns) are a snapshot of the 2011 Mechanical Turk socio-technical moment. By **formalizing** our assumptions—such as converting `--` to `pd.NA`—we have "repaired" this **Convenience Sample** so it can be safely repurposed for inquiry into our own text corpora.
+
+## Qualitative exploration: close reading the lexicon as a cultural artifact
+### Build a small "exhibit" of words
+
+### code task: create a small table of 20 words 
+,word,category,happiness_average,happiness_standard_deviation
+0,love,positive,8.42,1.1082
+1,successfull,positive,8.16,1.0859
+2,laughing,positive,8.2,1.066
+3,joy,positive,8.16,1.0568
+4,happiness,positive,8.44,0.9723
+5,suffer,negative,2.08,1.3827
+6,killed,negative,1.56,1.2316
+7,rape,negative,1.44,0.7866
+8,terrorist,negative,1.3,0.9091
+9,virus,negative,2.08,1.3377
+10,fucked,contested,3.56,2.7117
+11,shots,contested,3.32,2.0146
+12,omfg,contested,4.52,2.0726
+13,oprah,contested,5.42,2.0513
+14,christ,contested,6.16,2.3067
+15,ipod,culturally_loaded,6.56,1.7515
+16,taxes,culturally_loaded,2.7,1.5286
+17,usa,culturally_loaded,6.58,1.8416
+18,saddam,culturally_loaded,2.48,1.568
+19,rainbow,culturally_loaded,8.1,0.9949
+
+### Intepretation 
+
+The positive words are often associated with emotions like “love” and “joy”. These are universal emotions which are not dependent on cultural backgrounds and can represent a wide range of individual experiences. The negative words are often associated with violence and suffering. These words are likely unambiguous, and the negative association is universal among individuals. 
+
+Words with high standard deviation imply that individuals associate them with different meanings and that the words themselves can be overly simplified without context. This can have various reasons; for instance, the word “Christ” can exhibit significant variations across cultural and religious backgrounds. Whereas the word “shot” can have different meanings depending on the interpretation of the word itself. The word can be associated with alcoholic shots, but also with gun violence or vaccinations. Lastly, the words “fucked” and “omfg” can be used both as a negative impression as well as an exaggeration, which depends not only on the context but also on the age of the person. 
+
+Some words also carry historical and cultural meanings. These can also depend on their time period; for example, “iPod” might have a different happiness score nowadays as it is not commonly used anymore. The same goes for country rankings(“USA”), as international relations and reputations can change notably over time. Some words in the list were quite surprising, such as “Saddam”, which likely refers to the political figure Saddam Hussein and was clearly ranked negatively. 
+
+These different categories underscore, and examples demonstrate how the words themselves are shaped by emotional, historical, political and also cultural meaning. Furthermore, a high standard deviation suggests that a word is likely to have very different interpretations and associations among individuals.
+
