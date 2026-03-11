@@ -2,6 +2,9 @@
 
 AI-Use Disclosure: This project used [ChatGPT] to assist in drafting the pandas data-wrangling functions for load_clean.py and the descriptive statistical calculations for our Week 4 quantitative analysis. Our Data Wrangler verified the cleaning logic by manually checking the handling of null values (--), and our Quantitative Analyst cross-referenced the AI-generated means and standard deviations with manual calculations on a subset of the labMT data. We maintain full responsibility for the code and can explain every line of its implementation.
 
+## Group Members
+Natasa Ignjatović, Alessia Jia, Yizhi Liu, Jack Niu, Ricarda Karallus, Junyi Guo.
+
 ## Dataset Description
 
 This project adopts a reparative approach  to the labMT sentiment lexicon. Rather than a 'paranoid' reading that merely seeks to expose the biases of Mechanical Turk data , we treat this tool as a composition. By assembling a reproducible Python pipeline and a structured Model Card, we enable the dataset to be 'repaired' and repurposed for humanistic inquiry into the emotional textures of cultural texts.
@@ -71,6 +74,17 @@ Keeping these missing values allows us to see differences between corpora.
 
 - **lyrics_rank**: Frequency rank of the word in the song lyrics corpus.
 
+## Data provenance & critical reflection
+**Provenance (how the dataset was produced in this project)**  
+Our core dataset is the labMT 1.0 sentiment lexicon (10,222 English words). Each word has an average happiness score on a 1–9 scale based on ratings from 50 Amazon Mechanical Turk participants. The dataset also includes frequency ranks for the same words across four corpora (Twitter, Google Books, The New York Times, and Song Lyrics).  
+
+For this project, we did not re-collect any ratings. We built a small, reproducible pipeline that turns the raw file into a clean CSV used by all analysis scripts. In practice, we removed non-tabular metadata rows and converted “--” to missing values (NaN) to represent “not present in that corpus”. We then converted numeric columns into numeric types and validated that the cleaned output keeps the expected structure (10,222 rows, 8 columns). The cleaned dataset is saved to `data/clean/`.
+
+**Critical reflection (bias, limitations, and consequences)**  
+These happiness scores are not “ground truth”; they are a snapshot of how a specific rater group judged words at a specific time. Different populations, time periods, or communities may rate the same word differently, so our numbers should be treated as estimates rather than universal facts.  
+
+The dataset is word-level and removes context, so some words are naturally ambiguous or contested (irony, slang, taboo, political terms). For example, “shot” can refer to alcohol, vaccination, or gun violence, and “iPod” is time-specific, so the same token can carry different affect depending on context and historical moment. High standard deviation can reflect real disagreement, not just noise. Also, the rank columns contain structural missingness: a NaN means the word does not appear in that corpus, not that the dataset is broken. This makes it easy to compare vocabulary coverage across corpora, but results can shift if missing values are dropped without care. Overall, it works well for broad distribution patterns, but for contested words we still need short qualitative examples to avoid over-interpreting the numbers. In our write-up, we flag high-SD words and treat them as prompts for close reading rather than treating the mean score as a final answer.
+
 ## Transition to Quantitative Analysis: Distributions & Ontology
 Following the **Theory of Data**, we recognize that our cleaned CSV is not a perfect mirror of human language, but a **sample**. We move from treating these scores as "matters of fact" to a **distribution**, acknowledging that "the word is not the thing".
 
@@ -139,7 +153,7 @@ A strong pattern in the list is that the highest-disagreement words are mostly:
 	•	taboo/profanity/sex words, or
 	•	culture/ideology-loaded words
 
-Those categories usually create polarized reactions, meaning some raters give very low scores and others give higher scores. That "split” produces a large standard deviation, which is exactly what  the ranking is measuring.
+Those categories usually create polarized reactions, meaning some raters give very low scores and others give higher scores. That "split” produces a large standard deviation, which is exactly this measure captures: disagreement among raters.
 
 
 ### Interpret what your plot suggests about the four corpora.
@@ -150,31 +164,33 @@ Example word: lol — It’s very common on Twitter (rank 42) because it’s int
 ### Preliminary Findings: Regularities & Sampling
 Our audit shows that the "Regularities" we find (mathematical patterns) are a snapshot of the 2011 Mechanical Turk socio-technical moment. By **formalizing** our assumptions—such as converting `--` to `pd.NA`—we have "repaired" this **Convenience Sample** so it can be safely repurposed for inquiry into our own text corpora.
 
+
 ## Qualitative exploration: close reading the lexicon as a cultural artifact
 ### Build a small "exhibit" of words
 
 ### code task: create a small table of 20 words 
-,word,category,happiness_average,happiness_standard_deviation
-0,love,positive,8.42,1.1082
-1,successfull,positive,8.16,1.0859
-2,laughing,positive,8.2,1.066
-3,joy,positive,8.16,1.0568
-4,happiness,positive,8.44,0.9723
-5,suffer,negative,2.08,1.3827
-6,killed,negative,1.56,1.2316
-7,rape,negative,1.44,0.7866
-8,terrorist,negative,1.3,0.9091
-9,virus,negative,2.08,1.3377
-10,fucked,contested,3.56,2.7117
-11,shots,contested,3.32,2.0146
-12,omfg,contested,4.52,2.0726
-13,oprah,contested,5.42,2.0513
-14,christ,contested,6.16,2.3067
-15,ipod,culturally_loaded,6.56,1.7515
-16,taxes,culturally_loaded,2.7,1.5286
-17,usa,culturally_loaded,6.58,1.8416
-18,saddam,culturally_loaded,2.48,1.568
-19,rainbow,culturally_loaded,8.1,0.9949
+| **word** | **category** | **happiness_average** | **happiness_standard_deviation** |
+| :--- | :--- | :--- | :--- |
+| **love** | positive  |8.42 | 1.1082 |
+| **successfull** | positive | 8.16 | 1.08597 |
+| **laughing** | positive | 8.27 | 1.066 |
+| **joy** | positive | 8.16 | 1.0568 |
+| **happiness** | positive | 8.44 | 0.9723 |
+| **suffer** | negative | 2.08 | 1.3827 |
+| **killed** | negative | 1.56 | 1.2316 |
+| **rape** | negative | 1.44 | 0.7866 |
+| **terrorist** | negative | 1.30 | 0.9091 |
+| **virus** | negative | 2.08 | 1.3377 |
+| **fucked** | contested | 3.56 | 2.7117 |
+| **shots** | contested | 3.32 | 2.0146 |
+| **omfg** | contested | 4.52 | 2.0726 |
+| **oprah** | contested | 5.42 | 2.0513 |
+| **christ** | contested | 6.16 | 2.3067 |
+| **ipod** | culturally_loaded | 6.56 | 1.7515 |
+| **taxes** | culturally_loaded | 2.70 | 1.5286 |
+| **usa** | culturally_loaded | 6.58 | 1.8416 |
+| **saddam** | culturally_loaded | 2.48 | 1.568 |
+| **rainbow** | culturally_loaded | 8.10 | 0.9949 |
 
 ### Intepretation 
 
@@ -185,4 +201,31 @@ Words with high standard deviation imply that individuals associate them with di
 Some words also carry historical and cultural meanings. These can also depend on their time period; for example, “iPod” might have a different happiness score nowadays as it is not commonly used anymore. The same goes for country rankings(“USA”), as international relations and reputations can change notably over time. Some words in the list were quite surprising, such as “Saddam”, which likely refers to the political figure Saddam Hussein and was clearly ranked negatively. 
 
 These different categories underscore, and examples demonstrate how the words themselves are shaped by emotional, historical, political and also cultural meaning. Furthermore, a high standard deviation suggests that a word is likely to have very different interpretations and associations among individuals.
+
+# Inference - Happiness Dynamics in Movie Reviews 
+
+## Research Question ( ? )
+
+## Dataset ( role 2 )
+
+## Data Provenance ( role 2 )
+
+## Methods ( role 3 & 4 ) 
+
+### Hendonometer Implimentations ( role 3) 
+
+### Statistical Analysis ( role 4 ) 
+
+## Results
+
+### Figures (role 5 )
+
+### Statistical Findings ( Role 4 ) 
+
+## Limitations ( ? ) 
+
+## Reproducibility (Role 1 )
+
+### References
+
 
