@@ -257,31 +257,3 @@ python src/2_1_distrib_happ_score.py
 python src/2_2_contested.py
 python src/2_3_corpus_comparison.py
 python src/3_1_word_exhibit.py
-
-# Inference - Happiness Dynamics in Movie Reviews 
-
-## Research Question ( ? )
-
-## Dataset ( role 2 )
-
-## Data Provenance ( role 2 )
-
-## Methods ( role 3 & 4 ) 
-
-### Hendonometer Implimentations ( role 3) 
-
-### Statistical Analysis ( role 4 ) 
-
-## Results
-
-### Figures (role 5 )
-
-### Statistical Findings ( Role 4 ) 
-
-## Limitations ( ? ) 
-
-## Reproducibility (Role 1 )
-
-### References
-
-
