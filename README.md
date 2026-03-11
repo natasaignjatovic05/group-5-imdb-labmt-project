@@ -6,7 +6,7 @@ This project studies the labMT 1.0 dataset, the sentiment lexicon used in the he
 
 ## AI Use Disclosure
 
-This project used ChatGPT for limited support with early code drafting, project structuring, and revision of written sections. All cleaning logic, calculations, and interpretive claims were checked by the group. We remain responsible for the code and the arguments presented in this repository, in line with the course requirement that substantial AI use must be disclosed and that students must be able to explain all code and claims in the repo. :contentReference[oaicite:3]{index=3}
+This project used ChatGPT for limited support with early code drafting, project structuring, and revision of written sections. All cleaning logic, calculations, and interpretive claims were checked by the group. We remain responsible for the code and the arguments presented in this repository, in line with the course requirement that substantial AI use must be disclosed and that students must be able to explain all code and claims in the repo. 
 
 ## Group Members
 
@@ -38,7 +38,7 @@ The labMT lexicon is useful because it allows researchers to estimate the emotio
 
 We loaded the raw tab-delimited file into pandas and cleaned it using Python. Following the assignment brief, we skipped the metadata lines at the top of the file, replaced `--` with `NaN`, converted the numeric columns to numeric types, and verified the final dataset structure. The cleaned dataset contains **10,222 rows and 8 columns**. A cleaned version was saved for reproducibility and reused across the analysis scripts. 
 
-A missing corpus rank does not indicate broken data. It means that the word is absent from that corpus ranking. In other words, missingness in the rank columns is structurally meaningful because it tells us something about corpus coverage and linguistic difference. :contentReference[oaicite:7]{index=7}
+A missing corpus rank does not indicate broken data. It means that the word is absent from that corpus ranking. In other words, missingness in the rank columns is structurally meaningful because it tells us something about corpus coverage and linguistic difference. 
 
 ### Data dictionary
 
@@ -53,13 +53,13 @@ A missing corpus rank does not indicate broken data. It means that the word is a
 | `nyt_rank` | Frequency rank in The New York Times | float | yes | `NaN` means absent from NYT top 5000 |
 | `lyrics_rank` | Frequency rank in Song Lyrics | float | yes | `NaN` means absent from Lyrics top 5000 |
 
-This table directly follows the brief’s requirement to document what each column represents, its type, and how to interpret missing values. :contentReference[oaicite:8]{index=8}
+This table directly follows the brief’s requirement to document what each column represents, its type, and how to interpret missing values. 
 
 ## Sanity Checks
 
 We used several sanity checks to ensure that the cleaned dataset was structurally reliable.
 
-First, after cleaning, the dataset still contained **10,222 rows and 8 columns**, which confirms that parsing the raw file did not distort the expected structure. Second, we checked for duplicate words and found **no duplicated entries**, which supports the internal consistency of the lexicon. Third, we examined the most positive and most negative words by `happiness_average` to test whether the ranking looked plausible after import. :contentReference[oaicite:9]{index=9}
+First, after cleaning, the dataset still contained **10,222 rows and 8 columns**, which confirms that parsing the raw file did not distort the expected structure. Second, we checked for duplicate words and found **no duplicated entries**, which supports the internal consistency of the lexicon. Third, we examined the most positive and most negative words by `happiness_average` to test whether the ranking looked plausible after import. 
 
 These checks are useful, but they do not prove that the dataset is unbiased or universally valid. At most, they show that the file was imported and structured correctly. Even the idea that the “top” positive and negative words make sense depends on shared cultural assumptions, which is part of what this project critically investigates. 
 
@@ -97,7 +97,7 @@ These checks are useful, but they do not prove that the dataset is unbiased or u
 
 ### 1. Distribution of happiness scores
 
-The first part of our quantitative analysis examined the distribution of `happiness_average` across the entire lexicon. The assignment specifically requires a histogram and summary statistics because the shape of the distribution is part of the interpretive argument, not just background description. :contentReference[oaicite:11]{index=11}
+The first part of our quantitative analysis examined the distribution of `happiness_average` across the entire lexicon. The assignment specifically requires a histogram and summary statistics because the shape of the distribution is part of the interpretive argument, not just background description. 
 
 ![Distribution of happiness scores](figures/happiness_histogram.png)
 
@@ -117,7 +117,7 @@ The distribution is centered slightly above the neutral midpoint of 5, which sug
 
 ### 2. Disagreement and contested words
 
-The dataset also includes `happiness_standard_deviation`, which allows us to ask not only how positive or negative a word is on average, but also how much raters disagreed about it. The brief explicitly requires a scatterplot and a discussion of why some words are contested. :contentReference[oaicite:13]{index=13}
+The dataset also includes `happiness_standard_deviation`, which allows us to ask not only how positive or negative a word is on average, but also how much raters disagreed about it. The brief explicitly requires a scatterplot and a discussion of why some words are contested. 
 
 ![Average happiness versus disagreement](figures/happiness_vs_sd_scatter.png)
 
@@ -149,7 +149,7 @@ Five especially revealing contested words are **whiskey**, **churches**, **capit
 
 ### 3. Corpus comparison
 
-The corpus rank columns allow us to compare what counts as common language across different communication environments. The assignment asks for at least one plot or table showing corpus differences and overlap. :contentReference[oaicite:16]{index=16}
+The corpus rank columns allow us to compare what counts as common language across different communication environments. The assignment asks for at least one plot or table showing corpus differences and overlap. 
 
 ![Corpus comparison](figures/corpus_comparison.png)
 
@@ -178,11 +178,11 @@ Unique to each corpus:
 - NYT: **1043**
 - Lyrics: **1486**
 
-Google Books and NYT share the largest overlap, which suggests a closer relationship between edited print language and institutional news discourse. Lyrics is the most distinct corpus, which likely reflects its expressive, genre-specific, and performance-oriented language. Twitter overlaps relatively strongly with Lyrics, which fits their more informal and conversational style. A concrete example is **lol**, which appears prominently in Twitter language but is not common in Google Books. This illustrates the broader point that “common language” depends heavily on where language is sampled from. :contentReference[oaicite:17]{index=17}
+Google Books and NYT share the largest overlap, which suggests a closer relationship between edited print language and institutional news discourse. Lyrics is the most distinct corpus, which likely reflects its expressive, genre-specific, and performance-oriented language. Twitter overlaps relatively strongly with Lyrics, which fits their more informal and conversational style. A concrete example is **lol**, which appears prominently in Twitter language but is not common in Google Books. This illustrates the broader point that “common language” depends heavily on where language is sampled from. 
 
 ## Qualitative Exhibit: The Lexicon as a Cultural Artifact
 
-Following the brief, we created a small exhibit of 20 words across four categories: very positive, very negative, highly contested, and weird or culturally loaded. :contentReference[oaicite:18]{index=18}
+Following the brief, we created a small exhibit of 20 words across four categories: very positive, very negative, highly contested, and weird or culturally loaded. 
 
 | word | category | happiness_average | happiness_standard_deviation |
 |---|---|---:|---:|
@@ -207,7 +207,7 @@ Following the brief, we created a small exhibit of 20 words across four categori
 | saddam | culturally_loaded | 2.48 | 1.5680 |
 | rainbow | culturally_loaded | 8.10 | 0.9949 |
 
-This exhibit makes clear that the lexicon is not just a neutral list of words with stable emotional values. Some entries, such as **love** or **terrorist**, are relatively unambiguous in mainstream English and therefore show more stable emotional ratings. Others are more revealing. **Saddam**, **USA**, **taxes**, and **rainbow** are not emotionally self-evident in the same way. Their ratings likely reflect political framing, national identity, media exposure, and cultural associations carried by the Mechanical Turk raters. This is exactly the type of inference our supervisor said needed to be developed more deeply: the scores do not simply describe the words, they also reveal something about the people who rated them and the historical environment in which they did so. **iPod** is especially useful because it exposes the temporal specificity of the lexicon. It reflects a particular technological moment rather than a timeless lexical property. :contentReference[oaicite:19]{index=19}
+This exhibit makes clear that the lexicon is not just a neutral list of words with stable emotional values. Some entries, such as **love** or **terrorist**, are relatively unambiguous in mainstream English and therefore show more stable emotional ratings. Others are more revealing. **Saddam**, **USA**, **taxes**, and **rainbow** are not emotionally self-evident in the same way. Their ratings likely reflect political framing, national identity, media exposure, and cultural associations carried by the Mechanical Turk raters. This is exactly the type of inference our supervisor said needed to be developed more deeply: the scores do not simply describe the words, they also reveal something about the people who rated them and the historical environment in which they did so. **iPod** is especially useful because it exposes the temporal specificity of the lexicon. It reflects a particular technological moment rather than a timeless lexical property. 
 
 ## Critical Reflection
 
@@ -224,19 +224,19 @@ In our own words, the dataset pipeline can be reconstructed as follows:
 ### Five consequences of the dataset’s design choices
 
 **1. Words are rated in isolation rather than in context.**  
-This makes large scale sentiment scoring possible, but it also strips away syntax, irony, speaker position, and neighboring words. For example, **shots** can refer to medicine, alcohol, sports, or gun violence, but the dataset compresses those meanings into one average score. :contentReference[oaicite:21]{index=21}
+This makes large scale sentiment scoring possible, but it also strips away syntax, irony, speaker position, and neighboring words. For example, **shots** can refer to medicine, alcohol, sports, or gun violence, but the dataset compresses those meanings into one average score. 
 
 **2. The ratings come from a specific annotator population at a specific historical moment.**  
-This makes the dataset historically interesting, but it also means that some scores capture rater norms rather than stable lexical meaning. The scores for **Saddam**, **USA**, and **rainbow** are especially suggestive here. :contentReference[oaicite:22]{index=22}
+This makes the dataset historically interesting, but it also means that some scores capture rater norms rather than stable lexical meaning. The scores for **Saddam**, **USA**, and **rainbow** are especially suggestive here. 
 
 **3. Disagreement is stored numerically as standard deviation.**  
-This is useful because it reveals contested words, but the number alone cannot explain why a word is contested. Words like **capitalism** and **churches** require qualitative interpretation alongside the plot. :contentReference[oaicite:23]{index=23}
+This is useful because it reveals contested words, but the number alone cannot explain why a word is contested. Words like **capitalism** and **churches** require qualitative interpretation alongside the plot. 
 
 **4. Corpus coverage is structurally uneven.**  
 A missing corpus rank is not an error. It shows that different communication environments privilege different vocabularies. That is why a term like **lol** can feel central in Twitter but absent from Google Books. 
 
 **5. The lexicon leans mildly positive overall.**  
-This means the tool is not emotionally neutral at baseline. Since the distribution is centered above 5, later hedonometer analyses inherit a slightly positive lexical environment from the start. :contentReference[oaicite:25]{index=25}
+This means the tool is not emotionally neutral at baseline. Since the distribution is centered above 5, later hedonometer analyses inherit a slightly positive lexical environment from the start. 
 
 ## Instrument Note
 
@@ -244,7 +244,7 @@ If we were to use labMT 1.0 as an instrument today, we would trust it most for b
 
 At the same time, we would refuse to treat its scores as universal emotional truth. The lexicon is based on isolated words rather than contextualized language, so it cannot reliably capture irony, sentence meaning, speaker intention, or political nuance. It also reflects a particular rating population and moment in time, which means that culturally loaded words may say as much about the raters as about the words themselves.
 
-If rebuilt today, we would improve the instrument in three ways. First, we would document the rater population more transparently. Second, we would include phrase-level or sentence-level ratings for ambiguous terms. Third, we would account more explicitly for temporal change and community-specific language use. In this sense, labMT remains useful, but only when its limits are made visible rather than ignored. :contentReference[oaicite:26]{index=26}
+If rebuilt today, we would improve the instrument in three ways. First, we would document the rater population more transparently. Second, we would include phrase-level or sentence-level ratings for ambiguous terms. Third, we would account more explicitly for temporal change and community-specific language use. In this sense, labMT remains useful, but only when its limits are made visible rather than ignored. 
 
 ## How to Run
 
