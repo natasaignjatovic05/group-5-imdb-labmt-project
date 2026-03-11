@@ -3,7 +3,7 @@
 AI-Use Disclosure: This project used [ChatGPT] to assist in drafting the pandas data-wrangling functions for load_clean.py and the descriptive statistical calculations for our Week 4 quantitative analysis. Our Data Wrangler verified the cleaning logic by manually checking the handling of null values (--), and our Quantitative Analyst cross-referenced the AI-generated means and standard deviations with manual calculations on a subset of the labMT data. We maintain full responsibility for the code and can explain every line of its implementation.
 
 ## Group Members
-Natasa Ignjatović, Alessia Jia, Yizhi Liu, Jack Niu, Riccarda Karallus, Junyi Guo.
+Natasa Ignjatović, Alessia Jia, Yizhi Liu, Jack Niu, Ricarda Karallus, Junyi Guo.
 
 ## Dataset Description
 
@@ -201,4 +201,29 @@ Words with high standard deviation imply that individuals associate them with di
 Some words also carry historical and cultural meanings. These can also depend on their time period; for example, “iPod” might have a different happiness score nowadays as it is not commonly used anymore. The same goes for country rankings(“USA”), as international relations and reputations can change notably over time. Some words in the list were quite surprising, such as “Saddam”, which likely refers to the political figure Saddam Hussein and was clearly ranked negatively. 
 
 These different categories underscore, and examples demonstrate how the words themselves are shaped by emotional, historical, political and also cultural meaning. Furthermore, a high standard deviation suggests that a word is likely to have very different interpretations and associations among individuals.
+
+# Inference - Happiness Dynamics in Movie Reviews 
+
+## Research Question ( ? )
+
+## Dataset ( role 2 )
+
+## Data Provenance ( role 2 )
+
+## Methods ( role 3 & 4 ) 
+
+### Hendonometer Implimentations ( role 3) 
+
+### Statistical Analysis ( role 4 ) 
+
+## Results
+
+### Figures (role 5 )
+
+### Statistical Findings ( Role 4 ) 
+
+## Limitations ( ? ) 
+
+## Reproducibility (Role 1 )
+
 
