@@ -13,7 +13,7 @@ This project used ChatGPT for limited support with early code drafting, project 
 Natasa Ignjatović  
 Alessia Jia  
 Yizhi Liu  
-Jack Niu  
+Jack Niu 
 Ricarda Karallus  
 Junyi Guo  
 
@@ -36,36 +36,38 @@ The labMT lexicon is useful because it allows researchers to estimate the emotio
 
 ### Loading and cleaning the dataset
 
-### Figure 1. Data cleaning workflow
+The following workflow summarizes how we transformed the raw labMT source file into the cleaned dataset used in all subsequent analyses.
 
 ![Data cleaning workflow](figures/data_cleaning_workflow.png)
 
-As shown in Figure 1, we loaded the raw tab-delimited file into pandas and cleaned it using Python. Following the assignment brief, we skipped the metadata lines at the top of the file, replaced `--` with `NaN`, converted the numeric columns to numeric types, and verified the final dataset structure. The cleaned dataset contains **10,222 rows and 8 columns**. A cleaned version was saved for reproducibility and reused across the analysis scripts. 
+**Figure 1.** Data cleaning workflow used to transform the raw tab-delimited labMT file into the cleaned dataset used in later analyses.
 
-A missing corpus rank does not indicate broken data. It means that the word is absent from that corpus ranking. In other words, missingness in the rank columns is structurally meaningful because it tells us something about corpus coverage and linguistic difference. 
+We loaded the raw tab-delimited file into pandas and cleaned it using Python. Following the assignment brief, we skipped the metadata lines at the top of the file, replaced `--` with `NaN`, converted the numeric columns to numeric types, and verified the final dataset structure. The cleaned dataset contains **10,222 rows and 8 columns**. A cleaned version was saved for reproducibility and reused across the analysis scripts.
+
+In this dataset, a missing corpus rank does not indicate an error; it means that the word is not present in that corpus’s top 5000 list.
 
 ### Data dictionary
 
 | Variable | Meaning | Type | Missing values | Note |
-|---|---|---|---|---|
+|---|---|---|---:|---|
 | `word` | The English word evaluated in the lexicon | text | 0 | Primary lexical unit |
 | `happiness_rank` | Rank of the word by average happiness | integer | 0 | Lower rank means more positive |
 | `happiness_average` | Mean happiness score on a 1 to 9 scale | float | 0 | Main sentiment measure |
 | `happiness_standard_deviation` | Standard deviation of ratings | float | 0 | Higher values indicate more disagreement |
-| `twitter_rank` | Frequency rank in the Twitter corpus | float | yes | 5222 |
-| `google_rank` | Frequency rank in Google Books | float | yes | 5222 |
-| `nyt_rank` | Frequency rank in The New York Times | float | yes | 5222 |
-| `lyrics_rank` | Frequency rank in Song Lyrics | float | yes | 5222 |
+| `twitter_rank` | Frequency rank in the Twitter corpus | float | 5222 | `NaN` means absent from Twitter top 5000 |
+| `google_rank` | Frequency rank in Google Books | float | 5222 | `NaN` means absent from Google Books top 5000 |
+| `nyt_rank` | Frequency rank in The New York Times | float | 5222 | `NaN` means absent from NYT top 5000 |
+| `lyrics_rank` | Frequency rank in Song Lyrics | float | 5222 | `NaN` means absent from Lyrics top 5000 |
 
-This table directly follows the brief’s requirement to document what each column represents, its type, and how to interpret missing values. 
+This table follows the brief’s requirement to document what each column represents, its type, and its missingness. The rank columns contain structural missingness because a word can be absent from one corpus while present in another.
 
 ## Sanity Checks
 
 We used several sanity checks to ensure that the cleaned dataset was structurally reliable.
 
-First, after cleaning, the dataset still contained **10,222 rows and 8 columns**, which confirms that parsing the raw file did not distort the expected structure. Second, we checked for duplicate words and found **no duplicated entries**, which supports the internal consistency of the lexicon. Third, we examined the most positive and most negative words by `happiness_average` to test whether the ranking looked plausible after import. 
+First, after cleaning, the dataset still contained **10,222 rows and 8 columns**, which confirms that parsing the raw file did not distort the expected structure. Second, we checked for duplicate words and found **no duplicated entries**, which supports the internal consistency of the lexicon. Third, we also inspected a random sample of **15 rows** to confirm that the cleaning process correctly preserved word entries, happiness values, and corpus rank columns after skipping the metadata rows and converting `--` into `NaN`. Finally, we examined the most positive and most negative words by `happiness_average` to test whether the ranking looked plausible after import. 
 
-These checks are useful, but they do not prove that the dataset is unbiased or universally valid. At most, they show that the file was imported and structured correctly. Even the idea that the “top” positive and negative words make sense depends on shared cultural assumptions, which is part of what this project critically investigates. 
+These checks do not prove that the dataset is unbiased or universally valid. They simply show that the file was imported and structured correctly enough for analysis. Even the idea that the top positive and negative words “make sense” depends on shared cultural and historical assumptions, which is one of the central issues this project investigates.
 
 ### Top 10 positive words
 
@@ -252,7 +254,7 @@ If rebuilt today, we would improve the instrument in three ways. First, we would
 
 ## How to Run
 
-Install dependencies from `requirements.txt`, then run the scripts in order:
+Install dependencies from `requirements.txt`, then run the scripts in the following order:
 
 ```bash
 pip install -r requirements.txt
