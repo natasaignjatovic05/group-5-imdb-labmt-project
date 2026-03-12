@@ -1,6 +1,9 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Ensure output folder exists
+os.makedirs("figures", exist_ok=True)
 
 # Read cleaned file
 df = pd.read_csv("data/clean/labMT_clean.csv")
@@ -8,16 +11,17 @@ df = pd.read_csv("data/clean/labMT_clean.csv")
 # Missing values should be excluded in the analysis
 vals = df["happiness_average"].dropna()
 
-# drawing histogram
+# Draw histogram and save it
 plt.figure(figsize=(8, 5))
 plt.hist(vals, bins=30, edgecolor="black")
-plt.title("Histogram of happiness_average")
+plt.title("Distribution of happiness scores")
 plt.xlabel("happiness_average")
 plt.ylabel("Frequency")
 plt.tight_layout()
-plt.show()
+plt.savefig("figures/happiness_histogram.png", dpi=300, bbox_inches="tight")
+plt.close()
 
-#statistics
+# Summary statistics
 mean_val = vals.mean()
 median_val = vals.median()
 std_val = vals.std()
@@ -31,3 +35,5 @@ print(f"Median: {median_val:.4f}")
 print(f"Std:    {std_val:.4f}")
 print(f"5th percentile:  {p5:.4f}")
 print(f"95th percentile: {p95:.4f}")
+
+print("\nSaved figure to figures/happiness_histogram.png")
