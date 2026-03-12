@@ -107,7 +107,7 @@ The first part of our quantitative analysis examined the distribution of `happin
 
 ![Distribution of happiness scores](figures/happiness_histogram.png)
 
-**Figure 1.** Histogram of `happiness_average` across all 10,222 words in labMT 1.0.
+**Figure 2.** Histogram of `happiness_average` across all 10,222 words in labMT 1.0.
 
 #### Summary statistics
 
@@ -127,7 +127,7 @@ The dataset also includes `happiness_standard_deviation`, which allows us to ask
 
 ![Average happiness versus disagreement](figures/happiness_vs_sd_scatter.png)
 
-**Figure 2.** Scatterplot of `happiness_average` against `happiness_standard_deviation`.
+**Figure 3.** Scatterplot of `happiness_average` against `happiness_standard_deviation`.
 
 The scatterplot suggests that the highest disagreement tends to appear in the middle range rather than at the most positive or most negative extremes. This makes intuitive sense. Strongly positive or negative words are often easier to rate consistently, while ambiguous, taboo, ideological, or culturally loaded words invite more varied judgments. High standard deviation therefore should not be dismissed as noise. In many cases, it is analytically interesting because it reveals unstable or socially contested meanings. 
 
@@ -159,7 +159,7 @@ The corpus rank columns allow us to compare what counts as common language acros
 
 ![Corpus comparison](figures/corpus_comparison.png)
 
-**Figure 3.** Comparison of labMT word presence and overlap across Twitter, Google Books, The New York Times, and Song Lyrics.
+**Figure 4.** Comparison of labMT word presence and overlap across Twitter, Google Books, The New York Times, and Song Lyrics.
 
 Pairwise overlap between the top 5000 words in each corpus:
 
