@@ -48,14 +48,14 @@ A missing corpus rank does not indicate broken data. It means that the word is a
 
 | Variable | Meaning | Type | Missing values | Note |
 |---|---|---|---|---|
-| `word` | The English word evaluated in the lexicon | text | none | Primary lexical unit |
-| `happiness_rank` | Rank of the word by average happiness | integer | none | Lower rank means more positive |
-| `happiness_average` | Mean happiness score on a 1 to 9 scale | float | none | Main sentiment measure |
-| `happiness_standard_deviation` | Standard deviation of ratings | float | none | Higher values indicate more disagreement |
-| `twitter_rank` | Frequency rank in the Twitter corpus | float | yes | `NaN` means absent from Twitter top 5000 |
-| `google_rank` | Frequency rank in Google Books | float | yes | `NaN` means absent from Google Books top 5000 |
-| `nyt_rank` | Frequency rank in The New York Times | float | yes | `NaN` means absent from NYT top 5000 |
-| `lyrics_rank` | Frequency rank in Song Lyrics | float | yes | `NaN` means absent from Lyrics top 5000 |
+| `word` | The English word evaluated in the lexicon | text | 0 | Primary lexical unit |
+| `happiness_rank` | Rank of the word by average happiness | integer | 0 | Lower rank means more positive |
+| `happiness_average` | Mean happiness score on a 1 to 9 scale | float | 0 | Main sentiment measure |
+| `happiness_standard_deviation` | Standard deviation of ratings | float | 0 | Higher values indicate more disagreement |
+| `twitter_rank` | Frequency rank in the Twitter corpus | float | yes | 5222 |
+| `google_rank` | Frequency rank in Google Books | float | yes | 5222 |
+| `nyt_rank` | Frequency rank in The New York Times | float | yes | 5222 |
+| `lyrics_rank` | Frequency rank in Song Lyrics | float | yes | 5222 |
 
 This table directly follows the brief’s requirement to document what each column represents, its type, and how to interpret missing values. 
 
