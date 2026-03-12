@@ -8,14 +8,16 @@ This project studies the labMT 1.0 dataset, the sentiment lexicon used in the he
 
 This project used ChatGPT for limited support with early code drafting, project structuring, and revision of written sections. All cleaning logic, calculations, and interpretive claims were checked by the group. We remain responsible for the code and the arguments presented in this repository, in line with the course requirement that substantial AI use must be disclosed and that students must be able to explain all code and claims in the repo. 
 
-## Group Members
+## Credits
 
-Natasa Ignjatović  
-Alessia Jia  
-Yizhi Liu  
-Jack Niu 
-Ricarda Karallus  
-Junyi Guo  
+| Member | Role |
+|--------|------|
+| Jack Niu | Repo & workflow lead |
+| Alessia Jia | Data wrangler |
+| Natasa Ignjatović | Quantitative analyst |
+| Ricarda Karallus | Qualitative / close-reading lead |
+| Junyi Guo | Provenance & critique lead |
+| Yizhi Liu | Editor & figure curator |
 
 ## Dataset
 
