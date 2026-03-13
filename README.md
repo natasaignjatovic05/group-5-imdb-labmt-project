@@ -28,6 +28,16 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 
 ## Methods
 
+### Rating bands
+
+We grouped IMDb reviews into three rating bands using the original numeric `rating` field:
+
+- **low**: ratings 1 to 4
+- **medium**: ratings 5 to 6
+- **high**: ratings 7 to 10
+
+This grouping gives us a meaningful metadata variable for comparison and supports sampling and inference across review groups.
+
 ## Results
 
 ## Critical Reflection
