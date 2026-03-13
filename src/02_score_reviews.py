@@ -5,7 +5,7 @@ import pandas as pd
 reviews = pd.read_csv("data/processed/imdb_reviews.csv")
 
 # Load cleaned labMT lexicon
-labmt = pd.read_csv("data/processed/labmt_clean.csv")
+labmt = pd.read_csv("data/clean/labmt_clean.csv")
 
 # Build dictionary: word -> happiness score
 score_dict = dict(
@@ -45,7 +45,7 @@ def score_review(text):
         "mean_happiness": mean_happiness
     })
 
-# Add rating bands
+# Add rating band
 reviews["rating_band"] = reviews["rating"].apply(assign_rating_band)
 
 # Score each review
