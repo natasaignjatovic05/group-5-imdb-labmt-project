@@ -1,20 +1,10 @@
-# 2.3 Code task
-# For each corpus (Twitter / Google Books / NYT / Lyrics):
-# count how many labMT words appear in its top 5000 (i.e., rank is not missing)
-#
-# Compute a simple overlap table:
-#   - e.g., how many words appear in both Twitter and NYT? in all four?
-#
-# Make at least one plot about corpus differences (your choice):
-#   - bar chart of “how many words are present”
-#   - heatmap-like table (even simple) of overlaps
-#   - scatterplot of Twitter rank vs NYT rank for words present in both (optional)
-#
-# Example words that are common in one corpus but missing in another
-
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+
+# Ensure output folder exists
+os.makedirs("figures", exist_ok=True)
 
 df = pd.read_csv("data/clean/labMT_clean.csv")
 
@@ -27,19 +17,16 @@ rank_cols = {
 
 TOP_N = 5000
 
-# create mask per corpus
+# Create mask per corpus
 present = {name: df[col].notna() & (df[col] <= TOP_N) for name, col in rank_cols.items()}
 
-
-# count how many words appear in each corpus top 5000
+# Count how many words appear in each corpus top 5000
 counts = {name: int(mask.sum()) for name, mask in present.items()}
 print(f"Counts of labMT words present in top {TOP_N}:")
-
 for name, c in counts.items():
     print(f"  {name:10s}: {c}")
 
-# Compute a simple overlap table
-
+# Compute overlap table
 corpora = list(rank_cols.keys())
 overlap = pd.DataFrame(index=corpora, columns=corpora, dtype=int)
 for a in corpora:
@@ -49,7 +36,7 @@ for a in corpora:
 print("\nPairwise overlap counts (intersection size):")
 print(overlap)
 
-# All four overlap + union
+# All-four overlap and union
 all_four = present["Twitter"] & present["GoogleBooks"] & present["NYT"] & present["Lyrics"]
 any_of = present["Twitter"] | present["GoogleBooks"] | present["NYT"] | present["Lyrics"]
 
@@ -70,16 +57,17 @@ print("\nUnique-to-corpus counts:")
 for k, v in unique_counts.items():
     print(f"  {k:10s}: {v}")
 
-# Bar chart of counts present
+# Save bar chart
 plt.figure(figsize=(7, 4))
 plt.bar(list(counts.keys()), list(counts.values()))
 plt.title(f"How many labMT words appear in each corpus (top {TOP_N})")
 plt.xlabel("Corpus")
 plt.ylabel("Count of labMT words present")
 plt.tight_layout()
-plt.show()
+plt.savefig("figures/corpus_presence_bar.png", dpi=300, bbox_inches="tight")
+plt.close()
 
-# Heatmap-like overlap table
+# Save overlap heatmap
 overlap_arr = overlap.to_numpy()
 plt.figure(figsize=(6, 5))
 plt.imshow(overlap_arr)
@@ -91,29 +79,9 @@ for i in range(len(corpora)):
     for j in range(len(corpora)):
         plt.text(j, i, overlap_arr[i, j], ha="center", va="center")
 plt.tight_layout()
-plt.show()
+plt.savefig("figures/corpus_comparison.png", dpi=300, bbox_inches="tight")
+plt.close()
 
-# Example words: common in Lyrics (<=200) but missing from NYT
-example_a = df[
-    (df["lyrics_rank"].notna()) & (df["lyrics_rank"] <= 200) &
-    (df["nyt_rank"].isna())
-][["word", "lyrics_rank", "nyt_rank"]].head(15)
-
-print("\n\nCommon in Lyrics (<=200) but missing in NYT top 5000:")
-if len(example_a) == 0:
-    print("  (not found)")
-else:
-    print(example_a.to_string(index=False))
-
-# Example words: common in Twitter (<=200) but missing from GoogleBooks
-example_b = df[
-    (df["twitter_rank"].notna()) & (df["twitter_rank"] <= 200) &
-    (df["google_rank"].isna())
-][["word", "twitter_rank", "google_rank"]].head(15)
-
-print("\n\nCommon in Twitter (<=200) but missing in GoogleBooks top 5000:")
-if len(example_b) == 0:
-    print("  not found")
-else:
-    print(example_b.to_string(index=False))
-
+print("\nSaved figures to:")
+print("  figures/corpus_presence_bar.png")
+print("  figures/corpus_comparison.png")

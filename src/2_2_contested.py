@@ -1,9 +1,9 @@
-# 2.2 Code tasks
-# Plot happiness_average (x-axis) vs happiness_standard_deviation (y-axis) as a scatterplot.
-# Identify the 15 words with the highest standard deviation.
-
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Ensure output folder exists
+os.makedirs("figures", exist_ok=True)
 
 # Load data
 df = pd.read_csv("data/clean/labMT_clean.csv")
@@ -17,14 +17,17 @@ plt.scatter(
     s=20
 )
 
-plt.title("Disagreement")
+plt.title("Average happiness versus disagreement")
 plt.xlabel("happiness_average")
 plt.ylabel("happiness_standard_deviation")
 plt.tight_layout()
-plt.show()
+plt.savefig("figures/happiness_vs_sd_scatter.png", dpi=300, bbox_inches="tight")
+plt.close()
 
-# Most "disagreed-about" words have highest std dev
+# Most disagreed-about words have highest std dev
 top15 = df.sort_values("happiness_standard_deviation", ascending=False).head(15)
 
 print("15 words with highest happiness_standard_deviation:")
 print(top15[["word", "happiness_average", "happiness_standard_deviation"]].to_string(index=False))
+
+print("\nSaved figure to figures/happiness_vs_sd_scatter.png")
