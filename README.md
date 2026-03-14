@@ -18,13 +18,31 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 
 | Member | Role |
 |--------|------|
-| Ricardo/Jack | Repo & workflow lead |
-| Ricardo | Data acquisition lead |
+| Ricarda/Jack | Repo & workflow lead |
+| Ricarda | Data acquisition lead |
 | Jack/Andy | Measurement lead |
 | Junyi/Alessia | Stats & sampling lead |
 | Natasha | Visualisation lead |
 
 ## Corpus and Provenance
+# Dataset 
+
+This project includes the usage of the "IMDb Large Movie review Dataset v1.0", by Maas et al. "2011). The Dataset was interested as a benchmark for sentiment classification. It consists of 50,000 movie overviews divided into: 
+***-*** 25,000 training reviews
+***-*** 25,000 test reviews
+These reviews are categorized into positive and negative reviews.
+***-*** 25,000 positive reviews (corresponds to a raring of ≥ 7)
+***-*** 25,000 negative reviews (corresponds to a rating of ≤ 4)
+Reviews a re stored as single files and follow the fromat: [id]_[rating].txt, where the "id" represents a unique review identifier and the "rating" represents the IMDb rating on a scale from 1-10.
+For this project, the labeled reviews following dictionaries are being used:
+***-*** "train/pos"
+***-*** "train/neg"
+***-*** "test/pos"
+***-*** "test/neg"
+We extracted the review metadata and review texts needed from these files.  
+
+# Data Provenance 
+
 
 ## Methods
 
