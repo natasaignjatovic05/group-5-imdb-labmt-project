@@ -25,7 +25,7 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 | Natasha | Visualisation lead |
 
 ## Corpus and Provenance
-# Dataset 
+### Dataset 
 
 This project includes the usage of the "IMDb Large Movie review Dataset v1.0", by Maas et al. "2011). The Dataset was interested as a benchmark for sentiment classification. It consists of 50,000 movie overviews divided into: 
   - 25,000 training reviews
@@ -43,8 +43,21 @@ For this project, the labeled reviews following dictionaries are being used:
   -  "test/neg"
 We extracted the review metadata and review texts needed from these files.  
 
-# Data Provenance 
+### Data Provenance 
 
+The dataset created by Andrew L.Maas and et AL. was published in 2011 and is publicly available from the standford AI lab: https://ai.stanford.edu/ãmaas/data/sentiment/ 
+The dataset contains Movie revieews collected from IMDb which were afterwards used for machine learning research. The reviews have been organized into training and test sets and labeled after their sentiment polarity. Within the raw dataset the reviews are each stored as a text file within a dictionary structure indicating its sentiment "pos" or "neg" and a dataset split into "train" or "test". Each file name contains the review and ID rating. 
+
+For our project the dataset is locally stored in "data/raw/aclImdb/"
+To process the raw data, a extraction script "src/fetch_data.py" was used containing the following variables: 
+- Review ID
+- Rating
+- Sentiment Label
+- Dataset split
+- Review text
+- Word count
+
+This data is kept in a single document: IMDb_reviews_scored.csv, which is used for the analysis of how labMT based happiness varies across IMDb rating bands, and how certain these differences are. 
 
 ## Methods
 
