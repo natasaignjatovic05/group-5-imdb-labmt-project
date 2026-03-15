@@ -4,11 +4,12 @@ For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
 ## Overview
 
-This project uses the IMDb Large Movie Review Dataset to study how lexicon based happiness varies across review rating bands. We score each review using the labMT lexicon, compare low, medium, and high rated reviews, and estimate uncertainty around these differences. Our goal is not to treat the lexicon as emotional truth, but to test how well it works as a measurement instrument on a new corpus.
+This project uses the IMDb Large Movie Review Dataset to study how word-level happiness scores from the labMT lexicon varies across review rating bands. We extracted the review text and rating information from the files and used them to compute happiness scores based on the labMT word list. We then compared low-, medium-, and high-rated reviews and estimated uncertainty around these differences. Our goal is not to treat the lexicon as emotional truth, but to test how well it works as a measurement instrument on a new corpus.
+
 
 ## Research Question
 
-How does labMT based happiness vary across IMDb rating bands, and how certain are these differences?
+How do labMT-based happiness scores vary across IMDb rating bands, and how certain are these differences?
 
 ## AI Use Disclosure
 
@@ -27,21 +28,22 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 ## Corpus and Provenance
 ### Dataset 
 
-This project includes the usage of the "IMDb Large Movie review Dataset v1.0", by Maas et al. "2011). The Dataset was interested as a benchmark for sentiment classification. It consists of 50,000 movie overviews divided into: 
+This project includes the usage of the "IMDb Large Movie Review Dataset v1.0", by Maas et al. (2011). The Dataset was introduced as a benchmark for sentiment classification. It consists of 50,000 movie reviews divided into: 
   - 25,000 training reviews
   - 25,000 test reviews
 
 These reviews are categorized into positive and negative reviews.
-  - 25,000 positive reviews (corresponds to a raring of ≥ 7)
+  - 25,000 positive reviews (corresponds to a rating of ≥ 7)
   - 25,000 negative reviews (corresponds to a rating of ≤ 4)
 
-Reviews a re stored as single files and follow the fromat: [id]_[rating].txt, where the "id" represents a unique review identifier and the "rating" represents the IMDb rating on a scale from 1-10.
+Reviews are stored as single files and follow the format: [id]_[rating].txt, where the "id" represents a unique review identifier and the "rating" represents the IMDb rating on a scale from 1-10.
 For this project, the labeled reviews following dictionaries are being used:
   -  "train/pos"
   -  "train/neg"
   -  "test/pos"
   -  "test/neg"
 We extracted the review metadata and review texts needed from these files.  
+
 ### Dataset Pipeline
 
 ```mermaid
@@ -92,11 +94,15 @@ Taken together, these results suggest that high-rated IMDb reviews tend to use s
 
 ### Interpretation of the bootstrap distribution
 
+![Bootstrap Difference](figures/bootstrap_difference.png)
+
 The bootstrap histogram is centered around a positive mean difference of about 0.114, which shows that high-rated reviews consistently score higher than low-rated reviews across repeated resamples. The distribution is relatively narrow, and almost all of its mass lies well above 0. This means the estimated difference is stable rather than being driven by a few unusual samples.
 
 The dashed vertical lines marking the 95% confidence interval lie roughly between 0.112 and 0.116. Since the full interval is positive, we have strong evidence that the average labMT happiness score is higher for high-rated reviews than for low-rated reviews. In other words, the lexicon captures a small but reliable difference in evaluative language between the two rating bands.
 
 ### Interpretation of the boxplot
+
+![Boxplot](figures/happiness_boxplot.png)
 
 The boxplot shows that the distribution of labMT happiness scores for high-rated reviews is shifted upward relative to low-rated reviews. The median for the high-rated group is clearly above the median for the low-rated group, which matches the numerical result that high-rated reviews have a higher average happiness score.
 
