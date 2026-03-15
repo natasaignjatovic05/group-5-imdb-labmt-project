@@ -45,7 +45,7 @@ We extracted the review metadata and review texts needed from these files.
 
 ### Data Provenance 
 
-The dataset created by Andrew L.Maas and et AL. was published in 2011 and is publicly available from the standford AI lab: https://ai.stanford.edu/ãmaas/data/sentiment/ 
+The dataset created by Andrew L.Maas and et AL. was published in 2011 and is publicly available from the standford AI lab: https://ai.stanford.edu/~amaas/data/sentiment/ 
 The dataset contains Movie revieews collected from IMDb which were afterwards used for machine learning research. The reviews have been organized into training and test sets and labeled after their sentiment polarity. Within the raw dataset the reviews are each stored as a text file within a dictionary structure indicating its sentiment "pos" or "neg" and a dataset split into "train" or "test". Each file name contains the review and ID rating. 
 
 For our project the dataset is locally stored in "data/raw/aclImdb/"
