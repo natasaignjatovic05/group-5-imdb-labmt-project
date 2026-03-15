@@ -42,7 +42,18 @@ For this project, the labeled reviews following dictionaries are being used:
   -  "test/pos"
   -  "test/neg"
 We extracted the review metadata and review texts needed from these files.  
+## Dataset Pipeline
 
+```mermaid
+flowchart TD
+    A[Raw IMDb Dataset] --> B[data/raw/aclImdb]
+    B --> C[Data extraction script: src/fetch_data.py]
+    C --> D[Extract review text and metadata]
+    D --> E[Processed dataset: data/processed/imdb_reviews.csv]
+    E --> F[Hedonometer analysis]
+    F --> G[Statistical analysis]
+    G --> H[Figures and results]
+```
 ### Data Provenance 
 
 The dataset created by Andrew L.Maas and et AL. was published in 2011 and is publicly available from the standford AI lab: https://ai.stanford.edu/~amaas/data/sentiment/ 
