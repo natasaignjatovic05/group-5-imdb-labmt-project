@@ -110,4 +110,14 @@ At the same time, the two groups still overlap. This is important because it sho
 
 ## Critical Reflection
 
+This project explores how a lexicon-based approach can be used to analyze sentiment in IMDb movie reviews. Using the labMT word list, we computed average happiness scores for reviews and compared them across rating bands. The results suggest that higher-rated reviews tend to have higher happiness scores, indicating that the lexicon captures some meaningful differences in language. Bootstrapping was also useful for estimating the uncertainty around these differences.
+
+However, lexicon-based methods have clear limitations. They treat words independently and do not account for context, negation, or sarcasm, which can affect how sentiment is expressed in reviews. In addition, grouping reviews into rating bands may simplify patterns that exist across the full rating scope. Because of these limitations, the results should be interpreted as an evaluation of how well the labMT lexicon works on this dataset rather than a perfect measure of review sentiment.
+
 ## How to Run
+
+pip install -r requirements.txt
+
+python src/load_clean.py
+python src/fetch_data.py
+python src/stats_analysis.py
