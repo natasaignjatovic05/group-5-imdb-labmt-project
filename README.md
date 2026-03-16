@@ -115,9 +115,10 @@ This project explores how a lexicon-based approach can be used to analyze sentim
 However, lexicon-based methods have clear limitations. They treat words independently and do not account for context, negation, or sarcasm, which can affect how sentiment is expressed in reviews. In addition, grouping reviews into rating bands may simplify patterns that exist across the full rating scope. Because of these limitations, the results should be interpreted as an evaluation of how well the labMT lexicon works on this dataset rather than a perfect measure of review sentiment.
 
 ## How to Run
-
+```bash
 pip install -r requirements.txt
 
-python src/load_clean.py
-python src/fetch_data.py
+python src/load_clean.py 
+python src/fetch_data.py 
 python src/stats_analysis.py
+```
