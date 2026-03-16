@@ -72,6 +72,11 @@ To process the raw data, a extraction script "src/fetch_data.py" was used contai
 
 This data is kept in a single document: IMDb_reviews_scored.csv, which is used for the analysis of how labMT based happiness varies across IMDb rating bands, and how certain these differences are. 
 
+### Ethics
+
+The dataset is publicly available and used for research on the sentiment analysis. The dataset contains reviews from the IMDb platform,  which are used for academic and machine learning research. The reviews contained in the dataset only include the text itself and no data on personal information from the originator. This research aims to analyse alone the textual context of the reviews to study the sentiment patterns. 
+The data for this project is used in the context of the intended academic research purpose and is limited to the publicly distributed data. 
+
 ## Methods
 
 ### Rating bands
