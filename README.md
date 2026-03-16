@@ -41,7 +41,7 @@ For this project, the labeled reviews following dictionaries are being used:
   -  "train/pos"
   -  "train/neg"
   -  "test/pos"
-  -  "test/neg"
+  -  "test/neg" 
 We extracted the review metadata and review texts needed from these files.  
 
 ### Dataset Pipeline
