@@ -1,4 +1,4 @@
-# Inferring Happiness in IMDb Reviews with labMT
+# Inferring Happiness in long and short IMDb Reviews with labMT
 
 For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
@@ -9,7 +9,7 @@ This project uses the IMDb Large Movie Review Dataset to study how word-level ha
 
 ## Research Question
 
-How do labMT-based happiness scores vary across IMDb rating bands, and how certain are these differences?
+How do labMT-based happiness scores differ between short and long IMDb reviews, and how robust are these differences?
 
 ## AI Use Disclosure
 
