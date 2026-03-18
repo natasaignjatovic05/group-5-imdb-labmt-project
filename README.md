@@ -9,7 +9,7 @@ This project uses the IMDb Large Movie Review Dataset to study how word-level ha
 
 ## Research Question
 
-Do short and long IMDb reviews differ in lexicon based happiness, and how certain is this difference?
+Do short and long IMDb reviews differ in lexicon based happiness, and how sigificant is this difference?
 
 ## AI Use Disclosure
 
