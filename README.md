@@ -6,6 +6,22 @@ For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
 This project uses the IMDb Large Movie Review Dataset to study whether review length is associated with differences in lexicon based happiness. We extracted review text and metadata from the raw IMDb files, scored each review with the labMT lexicon, and then compared the 1,000 shortest reviews with the 1,000 longest reviews. We use bootstrap resampling on these sampled groups to estimate how stable the observed difference in mean happiness is.
 
+## Methods
+
+### Review length groups
+
+To study whether review length is associated with differences in lexical happiness, we used the existing `word_count` variable in the processed IMDb dataset.
+
+We operationalized review length as follows:
+
+- **short reviews**: the 1,000 reviews with the lowest word counts
+- **long reviews**: the 1,000 reviews with the highest word counts
+
+To make this selection reproducible, we sorted reviews first by `word_count` and then by `review_id`, and then took the first 1,000 rows as the short group and the last 1,000 rows as the long group.
+
+### Population and sample
+
+The full IMDb review corpus in our processed dataset is the broader corpus we work from. For inference, we selected two samples from that corpus: the 1,000 shortest reviews and the 1,000 longest reviews. We then used bootstrap resampling within these two groups to estimate the stability of the difference in mean happiness.
 
 ## Research Question
 
