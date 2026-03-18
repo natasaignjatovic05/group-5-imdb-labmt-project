@@ -9,7 +9,7 @@ This project uses the IMDb Large Movie Review Dataset to study how word-level ha
 
 ## Research Question
 
-How do labMT-based happiness scores differ between short and long IMDb reviews, and how robust are these differences?
+Do short and long IMDb reviews differ in lexicon based happiness, and how certain is this difference?
 
 ## AI Use Disclosure
 
