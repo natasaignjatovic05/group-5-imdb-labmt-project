@@ -1,128 +1,129 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
-import re
 
-# 1. Load data
-df = pd.read_csv("data/processed/imdb_reviews.csv")
-labmt = pd.read_csv("data/clean/labMT_clean.csv")
+# Load scored review data
+df = pd.read_csv("data/processed/imdb_scored.csv")
 
-print("IMDb columns:", df.columns.tolist())
-print("labMT columns:", labmt.columns.tolist())
+# Keep only rows with required values
+df = df.dropna(subset=["word_count", "mean_happiness", "review_id"]).copy()
 
+# Ensure stable sorting
+df["review_id"] = pd.to_numeric(df["review_id"], errors="coerce")
+df["word_count"] = pd.to_numeric(df["word_count"], errors="coerce")
+df["mean_happiness"] = pd.to_numeric(df["mean_happiness"], errors="coerce")
 
-# 2. Find the correct labMT columns automatically
-# adjust if needed after checking printed column names
+df = df.dropna(subset=["review_id", "word_count", "mean_happiness"]).copy()
 
-possible_word_cols = ["word", "term", "token"]
-possible_score_cols = ["happiness_average", "happs_avg", "score", "happiness"]
+# Sort by word_count, then review_id for deterministic selection
+df_sorted = df.sort_values(by=["word_count", "review_id"], ascending=[True, True]).copy()
 
-word_col = None
-score_col = None
+# Select 1000 shortest and 1000 longest reviews
+short_df = df_sorted.head(1000).copy()
+long_df = df_sorted.tail(1000).copy()
 
-for col in possible_word_cols:
-    if col in labmt.columns:
-        word_col = col
-        break
+short_df["review_length_group"] = "short"
+long_df["review_length_group"] = "long"
 
-for col in possible_score_cols:
-    if col in labmt.columns:
-        score_col = col
-        break
+sample_df = pd.concat([short_df, long_df], ignore_index=True)
 
-print("Using word column:", word_col)
-print("Using score column:", score_col)
+# Save sampled comparison dataset
+sample_df.to_csv("data/processed/imdb_length_sample.csv", index=False)
 
-if word_col is None or score_col is None:
-    raise ValueError("Could not find the word or score column in labMT_clean.csv")
+# Bootstrap settings
+n_boot = 5000
+rng = np.random.default_rng(42)
 
+short_scores = short_df["mean_happiness"].to_numpy()
+long_scores = long_df["mean_happiness"].to_numpy()
 
-# 3. Build lexicon dictionary
-labmt_dict = dict(zip(labmt[word_col].astype(str).str.lower(), labmt[score_col]))
+boot_short_means = []
+boot_long_means = []
+boot_diffs = []
 
+for _ in range(n_boot):
+    short_resample = rng.choice(short_scores, size=len(short_scores), replace=True)
+    long_resample = rng.choice(long_scores, size=len(long_scores), replace=True)
 
-# 4. Tokenize and score each review
-def tokenize(text):
-    if pd.isna(text):
-        return []
-    return re.findall(r"[a-zA-Z']+", str(text).lower())
+    short_mean = short_resample.mean()
+    long_mean = long_resample.mean()
+    diff = long_mean - short_mean
 
+    boot_short_means.append(short_mean)
+    boot_long_means.append(long_mean)
+    boot_diffs.append(diff)
 
-def compute_happiness(text):
-    tokens = tokenize(text)
-    scores = [labmt_dict[word] for word in tokens if word in labmt_dict]
+boot_short_means = np.array(boot_short_means)
+boot_long_means = np.array(boot_long_means)
+boot_diffs = np.array(boot_diffs)
 
-    if len(scores) == 0:
-        return np.nan
-    return np.mean(scores)
+# Summary table
+summary = pd.DataFrame([
+    {
+        "review_length_group": "short",
+        "n": len(short_scores),
+        "mean_happiness": short_scores.mean(),
+        "std_happiness": short_scores.std(ddof=1),
+        "ci_lower": np.percentile(boot_short_means, 2.5),
+        "ci_upper": np.percentile(boot_short_means, 97.5),
+        "min_word_count": short_df["word_count"].min(),
+        "max_word_count": short_df["word_count"].max()
+    },
+    {
+        "review_length_group": "long",
+        "n": len(long_scores),
+        "mean_happiness": long_scores.mean(),
+        "std_happiness": long_scores.std(ddof=1),
+        "ci_lower": np.percentile(boot_long_means, 2.5),
+        "ci_upper": np.percentile(boot_long_means, 97.5),
+        "min_word_count": long_df["word_count"].min(),
+        "max_word_count": long_df["word_count"].max()
+    }
+])
 
+summary.to_csv("tables/length_group_summary.csv", index=False)
 
-df["happiness_score"] = df["text"].apply(compute_happiness)
+# Difference summary
+diff_summary = pd.DataFrame([{
+    "comparison": "long_minus_short",
+    "observed_difference": long_scores.mean() - short_scores.mean(),
+    "ci_lower": np.percentile(boot_diffs, 2.5),
+    "ci_upper": np.percentile(boot_diffs, 97.5)
+}])
 
-print(df[["rating", "happiness_score"]].head())
-print("Missing happiness scores:", df["happiness_score"].isna().sum())
+diff_summary.to_csv("tables/length_difference_summary.csv", index=False)
 
-
-# 5. Drop rows with no matched labMT words
-df = df.dropna(subset=["happiness_score"])
-
-
-# 6. Split into rating bands
-low = df[(df["rating"] >= 1) & (df["rating"] <= 4)]
-high = df[(df["rating"] >= 7) & (df["rating"] <= 10)]
-
-print("Low rating reviews:", len(low))
-print("High rating reviews:", len(high))
-
-
-# 7. Extract scores
-low_scores = low["happiness_score"].values
-high_scores = high["happiness_score"].values
-
-low_mean = np.mean(low_scores)
-high_mean = np.mean(high_scores)
-observed_diff = high_mean - low_mean
-
-print("Low mean happiness:", low_mean)
-print("High mean happiness:", high_mean)
-print("Observed difference (high - low):", observed_diff)
-
-
-# 8. Bootstrap CI
-def bootstrap_difference(low_scores, high_scores, n_boot=5000):
-    diffs = []
-
-    for _ in range(n_boot):
-        low_sample = np.random.choice(low_scores, size=len(low_scores), replace=True)
-        high_sample = np.random.choice(high_scores, size=len(high_scores), replace=True)
-        diff = np.mean(high_sample) - np.mean(low_sample)
-        diffs.append(diff)
-
-    return np.array(diffs)
-
-
-boot_diffs = bootstrap_difference(low_scores, high_scores)
-
-ci_lower = np.percentile(boot_diffs, 2.5)
-ci_upper = np.percentile(boot_diffs, 97.5)
-
-print("95% bootstrap CI:", ci_lower, ci_upper)
-
-
-# 9. Save scored data for team use
-df.to_csv("data/processed/imdb_reviews_scored.csv", index=False)
-
-
-# 10. Plot bootstrap distribution
+# Figure 1: bootstrap difference histogram
+plt.figure(figsize=(8, 5))
 plt.hist(boot_diffs, bins=40)
-plt.axvline(ci_lower, linestyle="dashed")
-plt.axvline(ci_upper, linestyle="dashed")
-plt.axvline(observed_diff)
-
-plt.title("Bootstrap Distribution of Happiness Difference")
-plt.xlabel("High rating - Low rating")
+plt.axvline(np.percentile(boot_diffs, 2.5), linestyle="--")
+plt.axvline(np.percentile(boot_diffs, 97.5), linestyle="--")
+plt.axvline(boot_diffs.mean(), linestyle="-")
+plt.title("Bootstrap Distribution of Mean Happiness Difference")
+plt.xlabel("Mean happiness difference (long - short)")
 plt.ylabel("Frequency")
+plt.tight_layout()
+plt.savefig("figures/bootstrap_difference.png", dpi=300)
+plt.close()
 
-plt.savefig("figures/bootstrap_difference.png")
-plt.show()
+# Figure 2: boxplot by review length group
+plt.figure(figsize=(8, 5))
+plt.boxplot(
+    [short_scores, long_scores],
+    labels=["short", "long"]
+)
+plt.title("Happiness Scores by Review Length Group")
+plt.xlabel("Review length group")
+plt.ylabel("Mean happiness")
+plt.tight_layout()
+plt.savefig("figures/happiness_boxplot.png", dpi=300)
+plt.close()
 
+print("Saved:")
+print("- data/processed/imdb_length_sample.csv")
+print("- tables/length_group_summary.csv")
+print("- tables/length_difference_summary.csv")
+print("- figures/bootstrap_difference.png")
+print("- figures/happiness_boxplot.png")
+print(summary)
+print(diff_summary)
