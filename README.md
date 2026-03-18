@@ -4,7 +4,7 @@ For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
 ## Overview
 
-This project uses the IMDb Large Movie Review Dataset to study how word-level happiness scores from the labMT lexicon varies across review rating bands. We extracted the review text and rating information from the files and used them to compute happiness scores based on the labMT word list. We then compared low-, medium-, and high-rated reviews and estimated uncertainty around these differences. Our goal is not to treat the lexicon as emotional truth, but to test how well it works as a measurement instrument on a new corpus.
+This project uses the IMDb Large Movie Review Dataset to study whether review length is associated with differences in lexicon based happiness. We extracted review text and metadata from the raw IMDb files, scored each review with the labMT lexicon, and then compared the 1,000 shortest reviews with the 1,000 longest reviews. We use bootstrap resampling on these sampled groups to estimate how stable the observed difference in mean happiness is.
 
 
 ## Research Question
