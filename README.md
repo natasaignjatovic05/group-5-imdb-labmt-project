@@ -23,6 +23,10 @@ To make this selection reproducible, we sorted reviews first by `word_count` and
 
 The full IMDb review corpus in our processed dataset is the broader corpus we work from. For inference, we selected two samples from that corpus: the 1,000 shortest reviews and the 1,000 longest reviews. We then used bootstrap resampling within these two groups to estimate the stability of the difference in mean happiness.
 
+### Happiness scoring
+
+We used the cleaned labMT lexicon to assign happiness scores to words appearing in each IMDb review. For every review, we tokenized the text, matched tokens against the lexicon, counted the number of matched words, and calculated the mean happiness score across all matched tokens. Tokens not present in the lexicon were treated as out of vocabulary and were excluded from the score.
+
 ## Research Question
 
 Do short and long IMDb reviews differ in lexicon based happiness, and does it contradict our hypothesis that longer reviews are associated with a higher overall happiness score? 
