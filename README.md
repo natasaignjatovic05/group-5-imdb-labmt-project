@@ -65,6 +65,30 @@ flowchart TD
     H --> J[Bootstrap comparison]
     I --> J
     J --> K[Figures and interpretation]
+```md
+### Data Provenance
+
+The dataset created by Andrew L. Maas et al. was published in 2011 and is publicly available from the Stanford AI Lab.
+
+Within the raw dataset, each review is stored as a text file in a folder structure indicating its sentiment (`pos` or `neg`) and dataset split (`train` or `test`). Each filename contains the review ID and rating.
+
+To process the raw data, an extraction script (`src/fetch_data.py`) was used to create the following variables:
+
+- `review_id`
+- `rating`
+- `sentiment`
+- `split`
+- `word_count`
+- `text`
+
+The scored dataset extends this with:
+
+- `matched_token_count`
+- `mean_happiness`
+
+### Ethics
+
+The dataset is publicly available and commonly used for research on sentiment analysis. It contains review text but no direct personal identifying information about reviewers. Our analysis focuses only on the textual content and metadata distributed with the public dataset, and it is used here solely for academic research purposes.
 
 ## Results
 
