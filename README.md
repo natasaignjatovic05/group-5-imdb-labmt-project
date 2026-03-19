@@ -47,7 +47,25 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 
 ## Corpus and Provenance
  
+### Dataset
 
+We use the IMDb Large Movie Review Dataset, a publicly available English-language corpus of movie reviews. The dataset includes review text and metadata such as sentiment split, rating, and review length. For this project, we use the processed review file generated from the raw dataset and focus on the `word_count` metadata variable to define short and long review groups.
+
+### Dataset Pipeline
+
+```mermaid
+flowchart TD
+    A[Raw IMDb review files] --> B[Extract review text and metadata]
+    B --> C[Create processed review dataset]
+    C --> D[Tokenize review text]
+    D --> E[Match tokens to labMT lexicon]
+    E --> F[Compute matched token count and mean happiness]
+    F --> G[Sort by word_count and review_id]
+    G --> H[Select 1,000 shortest reviews]
+    G --> I[Select 1,000 longest reviews]
+    H --> J[Bootstrap comparison]
+    I --> J
+    J --> K[Figures and interpretation]
 
 ## Results
 
