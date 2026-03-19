@@ -45,8 +45,8 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 | Natasha | Visualisation lead |
 
 ## Corpus and Provenance
- 
-### Dataset
+
+### Dataset Pipeline
 
 We use the IMDb Large Movie Review Dataset, a publicly available English-language corpus of movie reviews. The dataset includes review text and metadata such as sentiment split, rating, and review length. For this project, we use the processed review file generated from the raw dataset and focus on the `word_count` metadata variable to define short and long review groups.
 
