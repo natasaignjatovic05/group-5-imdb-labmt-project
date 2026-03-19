@@ -1,5 +1,4 @@
-# Inferring Happiness in long and short IMDb Reviews with labMT
-
+# Inferring Happiness in Long and Short IMDb Reviews with labMT
 For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
 ## Overview
@@ -69,24 +68,27 @@ flowchart TD
 
 ## Results
 
-
+We compared the 1,000 shortest and the 1,000 longest IMDb reviews using `word_count` as the metadata variable that defines review length. Each review was scored with the labMT lexicon by calculating the mean happiness score across all matched tokens.
 
 ### Interpretation of the bootstrap distribution
 
+![Bootstrap Difference](figures/bootstrap_difference.png)
 
-
-The bootstrap histogram is centered around a positive mean difference of about 0.114, which shows that high-rated reviews consistently score higher than low-rated reviews across repeated resamples. The distribution is relatively narrow, and almost all of its mass lies well above 0. This means the estimated difference is stable rather than being driven by a few unusual samples.
-
-The dashed vertical lines marking the 95% confidence interval lie roughly between 0.112 and 0.116. Since the full interval is positive, we have strong evidence that the average labMT happiness score is higher for high-rated reviews than for low-rated reviews. In other words, the lexicon captures a small but reliable difference in evaluative language between the two rating bands.
+The bootstrap histogram shows the distribution of the difference in mean happiness between the long and short review groups across repeated resamples. If the distribution is centered above 0, this indicates that long reviews tend to have higher mean happiness scores than short reviews. If it is centered below 0, the opposite is true. The width of the distribution shows how stable that estimated difference is under repeated sampling.
 
 ### Interpretation of the boxplot
 
-The boxplot shows that the distribution of labMT happiness scores for high-rated reviews is shifted upward relative to low-rated reviews. The median for the high-rated group is clearly above the median for the low-rated group, which matches the numerical result that high-rated reviews have a higher average happiness score.
+![Boxplot](figures/happiness_boxplot.png)
 
-At the same time, the two groups still overlap. This is important because it shows that not every high-rated review is strongly positive in wording, and not every low-rated review is strongly negative. Reviews often mix praise, criticism, plot summary, irony, and genre-specific vocabulary. The boxplot therefore supports a real group-level difference, while also showing that lexical happiness is only one dimension of review language.
+The boxplot compares the distribution of review-level happiness scores in the short and long review groups. It shows whether one group tends to be systematically higher than the other, while also revealing how much overlap remains between them. This helps us evaluate whether any observed difference is broad and consistent or driven only by a small part of the sample.
 
 ## Critical Reflection
 
+This project uses a lexicon based method to measure review-level happiness in IMDb movie reviews. The method is useful for broad aggregate comparison because it provides a reproducible way to score large volumes of text using a fixed word list. At the same time, it has clear limitations. labMT scores words in isolation and therefore cannot fully capture context, negation, sarcasm, or narrative structure.
+
+A second limitation concerns the operationalization of review length. By selecting the 1,000 shortest and 1,000 longest reviews, we create a strong contrast that is useful for comparison, but this also simplifies the full range of review lengths in the corpus. The resulting comparison should therefore be interpreted as a contrast between extreme groups rather than a complete model of how review length relates to lexical happiness across all IMDb reviews.
+
+Finally, bootstrap resampling is only meaningful here because we explicitly treat the short and long groups as samples drawn from the broader IMDb review corpus in our processed dataset. The bootstrap distribution therefore helps us evaluate the stability of the observed mean difference under repeated resampling of these selected groups.
 
 
 ## How to Run
