@@ -46,71 +46,7 @@ This project used ChatGPT for limited support with workflow planning, debugging,
 | Natasha | Visualisation lead |
 
 ## Corpus and Provenance
-### Dataset 
-
-This project includes the usage of the "IMDb Large Movie Review Dataset v1.0", by Maas et al. (2011). The Dataset was introduced as a benchmark for sentiment classification. It consists of 50,000 movie reviews divided into: 
-  - 25,000 training reviews
-  - 25,000 test reviews
-
-These reviews are categorized into positive and negative reviews.
-  - 25,000 positive reviews (corresponds to a rating of ≥ 7)
-  - 25,000 negative reviews (corresponds to a rating of ≤ 4)
-
-Reviews are stored as single files and follow the format: [id]_[rating].txt, where the "id" represents a unique review identifier and the "rating" represents the IMDb rating on a scale from 1-10.
-For this project, the labeled reviews following dictionaries are being used:
-  -  "train/pos"
-  -  "train/neg"
-  -  "test/pos"
-  -  "test/neg" 
-
-We extracted the review metadata and review texts needed from these files.  
-
-### Dataset Pipeline
-
-```mermaid
-flowchart TD
-    A[Raw IMDb Dataset] --> B[data/raw/aclImdb]
-    B --> C[Data extraction script: src/fetch_data.py]
-    C --> D[Extract review text and metadata]
-    D --> E[Processed dataset: data/processed/imdb_reviews.csv]
-    E --> F[Hedonometer analysis]
-    F --> G[Statistical analysis]
-    G --> H[Figures and results]
-```
-### Data Provenance 
-
-The dataset created by Andrew L.Maas and et AL. was published in 2011 and is publicly available from the standford AI lab: https://ai.stanford.edu/~amaas/data/sentiment/ 
-The dataset contains Movie reviews collected from IMDb which were afterwards used for machine learning research. The reviews have been organized into training and test sets and labeled after their sentiment polarity. Within the raw dataset the reviews are each stored as a text file within a dictionary structure indicating its sentiment "pos" or "neg" and a dataset split into "train" or "test". Each file name contains the review and ID rating. 
-
-For our project the dataset is locally stored in "data/raw/aclImdb/"
-To process the raw data, a extraction script "src/fetch_data.py" was used containing the following variables: 
-- Review ID
-- Rating
-- Sentiment Label
-- Dataset split
-- Review text
-- Word count
-
-### Review length groups
-
-To study whether review length is associated with differences in lexical happiness, we used the existing `word_count` variable in the processed IMDb dataset.
-
-We operationalized review length as follows:
-
-- **short reviews**: the 1,000 reviews with the lowest word counts
-- **long reviews**: the 1,000 reviews with the highest word counts
-
-To make this selection reproducible, reviews are sorted first by `word_count` and then by `review_id`. The first 1,000 rows form the short group and the last 1,000 rows form the long group. 
-
-### Happiness scoring
-
-We used the cleaned labMT lexicon to assign happiness scores to words appearing in each IMDb review. For every review, we tokenized the text, matched tokens against the lexicon, counted the number of matched words, and calculated the mean happiness score across all matched tokens. Tokens that were not present in the lexicon were treated as out of vocabulary and were not included in the review score.
-
-### Ethics
-
-The dataset is publicly available and used for research on the sentiment analysis. The dataset contains reviews from the IMDb platform,  which are used for academic and machine learning research. The reviews contained in the dataset only include the text itself and no data on personal information from the originator. This research aims to analyse alone the textual context of the reviews to study the sentiment patterns. 
-The data for this project is used in the context of the intended academic research purpose and is limited to the publicly distributed data. 
-
+ 
 
 
 ## Results
