@@ -52,6 +52,9 @@ We use the IMDb Large Movie Review Dataset, a publicly available English-languag
 
 ### Dataset Pipeline
 
+```md
+### Dataset Pipeline
+
 ```mermaid
 flowchart TD
     A[Raw IMDb review files] --> B[Extract review text and metadata]
