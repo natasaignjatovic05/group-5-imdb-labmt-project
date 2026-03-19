@@ -6,6 +6,10 @@ For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
 This project uses the IMDb Large Movie Review Dataset to study whether review length is associated with differences in lexicon based happiness. We extracted review text and metadata from the raw IMDb files, scored each review with the labMT lexicon, and then compared the 1,000 shortest reviews with the 1,000 longest reviews. Our goal is not to treat the lexicon as emotional truth, but to test how well it works as a measurement instrument on a new corpus.
 
+## Research Question
+
+Do short and long IMDb reviews differ in lexicon based happiness?
+
 ## Methods
 
 ### Review length groups
@@ -26,10 +30,6 @@ The full IMDb review corpus in our processed dataset is the broader corpus we wo
 ### Happiness scoring
 
 We used the cleaned labMT lexicon to assign happiness scores to words appearing in each IMDb review. For every review, we tokenized the text, matched tokens against the lexicon, counted the number of matched words, and calculated the mean happiness score across all matched tokens. Tokens not present in the lexicon were treated as out of vocabulary and were excluded from the score.
-
-## Research Question
-
-Do short and long IMDb reviews differ in lexicon based happiness, and does it contradict our hypothesis that longer reviews are associated with a higher overall happiness score? 
 
 ## AI Use Disclosure
 
@@ -111,25 +111,11 @@ We used the cleaned labMT lexicon to assign happiness scores to words appearing 
 The dataset is publicly available and used for research on the sentiment analysis. The dataset contains reviews from the IMDb platform,  which are used for academic and machine learning research. The reviews contained in the dataset only include the text itself and no data on personal information from the originator. This research aims to analyse alone the textual context of the reviews to study the sentiment patterns. 
 The data for this project is used in the context of the intended academic research purpose and is limited to the publicly distributed data. 
 
-## Methods
 
-### Rating bands
-
-We grouped IMDb reviews into three rating bands using the original numeric `rating` field:
-
-- **low**: ratings 1 to 4
-- **medium**: ratings 5 to 6
-- **high**: ratings 7 to 10
-
-This grouping gives us a meaningful metadata variable for comparison and supports sampling and inference across review groups.
 
 ## Results
 
-We compared labMT-based happiness scores between low-rated IMDb reviews (ratings 1–4) and high-rated IMDb reviews (ratings 7–10). The average happiness score for low-rated reviews was approximately 5.360, while the average for high-rated reviews was approximately 5.474. The observed mean difference (high minus low) was about 0.114.
 
-To assess the stability of this difference, we used bootstrap resampling with 5,000 iterations. The 95% bootstrap confidence interval for the mean difference was approximately [0.1119, 0.1158]. Because this interval does not include 0, the difference is unlikely to be due to random sampling variation alone.
-
-Taken together, these results suggest that high-rated IMDb reviews tend to use slightly more positively weighted vocabulary than low-rated reviews when measured with the labMT lexicon. The difference is small, but it is consistent across resamples.
 
 ### Interpretation of the bootstrap distribution
 
@@ -141,17 +127,13 @@ The dashed vertical lines marking the 95% confidence interval lie roughly betwee
 
 ### Interpretation of the boxplot
 
-
-
 The boxplot shows that the distribution of labMT happiness scores for high-rated reviews is shifted upward relative to low-rated reviews. The median for the high-rated group is clearly above the median for the low-rated group, which matches the numerical result that high-rated reviews have a higher average happiness score.
 
 At the same time, the two groups still overlap. This is important because it shows that not every high-rated review is strongly positive in wording, and not every low-rated review is strongly negative. Reviews often mix praise, criticism, plot summary, irony, and genre-specific vocabulary. The boxplot therefore supports a real group-level difference, while also showing that lexical happiness is only one dimension of review language.
 
 ## Critical Reflection
 
-This project explores how a lexicon-based approach can be used to analyze sentiment in IMDb movie reviews. Using the labMT word list, we computed average happiness scores for reviews and compared them across rating bands. The results suggest that higher-rated reviews tend to have higher happiness scores, indicating that the lexicon captures some meaningful differences in language. Bootstrapping was also useful for estimating the uncertainty around these differences.
 
-However, lexicon-based methods have clear limitations. They treat words independently and do not account for context, negation, or sarcasm, which can affect how sentiment is expressed in reviews. In addition, grouping reviews into rating bands may simplify patterns that exist across the full rating scope. Because of these limitations, the results should be interpreted as an evaluation of how well the labMT lexicon works on this dataset rather than a perfect measure of review sentiment.
 
 ## How to Run
 ```bash
