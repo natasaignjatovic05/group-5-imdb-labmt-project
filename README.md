@@ -1,5 +1,4 @@
 # Inferring Happiness in Long and Short IMDb Reviews with labMT
-For Mini Project 1, see [mini_project_1.md](mini_project_1.md).
 
 ## Overview
 
