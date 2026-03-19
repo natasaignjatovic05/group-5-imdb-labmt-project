@@ -15,15 +15,6 @@ score_dict = dict(
     )
 )
 
-def assign_rating_band(rating):
-    if 1 <= rating <= 4:
-        return "low"
-    elif 5 <= rating <= 6:
-        return "medium"
-    elif 7 <= rating <= 10:
-        return "high"
-    return None
-
 def tokenize(text):
     if pd.isna(text):
         return []
@@ -45,23 +36,15 @@ def score_review(text):
         "mean_happiness": mean_happiness
     })
 
-# Add rating band
-reviews["rating_band"] = reviews["rating"].apply(assign_rating_band)
-
-# Score each review
 scores = reviews["text"].apply(score_review)
-
-# Combine
 scored = pd.concat([reviews, scores], axis=1)
 
-# Save output
 scored.to_csv("data/processed/imdb_scored.csv", index=False)
 
 print("Saved: data/processed/imdb_scored.csv")
 print(scored[[
     "review_id",
-    "rating",
-    "rating_band",
+    "word_count",
     "matched_token_count",
     "mean_happiness"
 ]].head())
