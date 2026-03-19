@@ -52,9 +52,33 @@ We use the IMDb Large Movie Review Dataset, a publicly available English-languag
 
 <img width="964" height="2114" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/1a4eab5d-4301-45b4-8fd7-e1028a4ff5df" />
 
+### Data Provenance
+
+The dataset created by Andrew L. Maas et al. was published in 2011 and is publicly available from the Stanford AI Lab.
+
+Within the raw dataset, each review is stored as a text file in a folder structure indicating its sentiment (`pos` or `neg`) and dataset split (`train` or `test`). Each filename contains the review ID and rating.
+
+To process the raw data, an extraction script (`src/fetch_data.py`) was used to create the following variables:
+
+- `review_id`
+- `rating`
+- `sentiment`
+- `split`
+- `word_count`
+- `text`
+
+The scored dataset extends this with:
+
+- `matched_token_count`
+- `mean_happiness`
+
+### Ethics
+
+The dataset is publicly available and commonly used for research on sentiment analysis. It contains review text but no direct personal identifying information about reviewers. Our analysis focuses only on the textual content and metadata distributed with the public dataset, and it is used here solely for academic research purposes.
+
 ## Results
 
-We compared the 1,000 shortest and the 1,000 longest IMDb reviews using `word_count` as the metadata variable that defines review length. Each review was scored with the labMT lexicon by calculating the mean happiness score across all matched tokens.
+We compared the 1,000 shortest and the 1,000 longest IMDb reviews using `word_count` as the metadata variable that defines review length. The observed mean happiness score for the short review group was [INSERT], while the observed mean happiness score for the long review group was [INSERT]. The observed difference in means (long minus short) was [INSERT]. The 95% bootstrap confidence interval for this difference was [INSERT, INSERT].
 
 ### Interpretation of the bootstrap distribution
 
@@ -81,7 +105,7 @@ Finally, bootstrap resampling is only meaningful here because we explicitly trea
 ```bash
 pip install -r requirements.txt
 
-python src/load_clean.py 
-python src/fetch_data.py 
+python src/load_clean.py
+python src/fetch_data.py
+python src/02_score_reviews.py
 python src/stats_analysis.py
-```
