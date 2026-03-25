@@ -96,13 +96,13 @@ We compared the 1,000 shortest and the 1,000 longest IMDb reviews using `word_co
 
 ### Interpretation of the bootstrap distribution
 
-![Bootstrap Difference]
+![Bootstrap Difference](bootstrap_difference.png)
 
 The bootstrap histogram shows the distribution of the difference in mean happiness between the long and short review groups across repeated resamples. If the distribution is centered above 0, this indicates that long reviews tend to have higher mean happiness scores than short reviews. If it is centered below 0, the opposite is true. The width of the distribution shows how stable that estimated difference is under repeated sampling.
 
 ### Interpretation of the boxplot
 
-![Boxplot]
+![Boxplot](happiness_boxplot.png) 
 
 The boxplot compares the distribution of review-level happiness scores in the short and long review groups. It shows whether one group tends to be systematically higher than the other, while also revealing how much overlap remains between them. This helps us evaluate whether any observed difference is broad and consistent or driven only by a small part of the sample.
 
