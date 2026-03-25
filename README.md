@@ -97,7 +97,7 @@ The dataset is publicly available and commonly used for research on sentiment an
 
 ## Results
 
-We compared the 1,000 shortest and the 1,000 longest IMDb reviews using `word_count` as the metadata variable that defines review length. The observed mean happiness score for the short review group was [INSERT], while the observed mean happiness score for the long review group was [INSERT]. The observed difference in means (long minus short) was [INSERT]. The 95% bootstrap confidence interval for this difference was [INSERT, INSERT].
+We compared the 1,000 shortest and the 1,000 longest IMDb reviews using word_count as the metadata variable that defines review length. The observed mean happiness score for the short review group was 5.484, while the observed mean happiness score for the long review group was 5.376. The observed difference in means (long minus short) was -0.108. The 95% bootstrap confidence interval for this difference was [-0.123, -0.092].
 
 ### Interpretation of the bootstrap distribution
 
