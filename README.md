@@ -29,6 +29,11 @@ The complete IMDb review corpus in our processed dataset serves as the represent
 
 We used the cleaned labMT lexicon to assign happiness scores to words appearing in each IMDb review. For every review, we tokenized the text, matched tokens against the lexicon, counted the number of matched words, and calculated the mean happiness score across all matched tokens. Tokens not present in the lexicon were treated as out of vocabulary and were excluded from the score.
 
+### Sanity Check
+To ensure the reliability of our measurement and sampling procedure, we conducted several sanity checks based on the constructed dataset and scoring pipeline.
+First, we inspected the distribution of word_count to ensure that the selected short and long groups represent meaningful extremes and that the sorting procedure is reproducible. Second, we examined matched_token_count to assess lexicon coverage, as reviews with very few matched tokens may produce unstable happiness scores. Third, we confirmed that tokenization and preprocessing were applied consistently across all reviews to ensure comparability. Finally, we checked for extreme or implausible happiness scores to verify that the measurement pipeline behaves as expected.
+These checks do not eliminate all sources of bias, but they help ensure that the observed differences are not driven by obvious artifacts in data processing or measurement.
+
 ## AI Use Disclosure
 
 This project used ChatGPT for limited support with workflow planning, debugging, and drafting. All code, results, and interpretive claims were checked by the group. We remain responsible for the contents of this repository.
