@@ -51,7 +51,7 @@ We use the IMDb Large Movie Review Dataset, a publicly available English-languag
 
 ### Dataset Pipeline
 
-mermaid
+```mermaid
 flowchart TD
     A[Raw IMDb review files] --> B[Extract review text and metadata]
     B --> C[Create processed review dataset]
@@ -64,6 +64,7 @@ flowchart TD
     H --> J[Bootstrap comparison]
     I --> J
     J --> K[Figures and interpretation]
+```
 
 ### Data Provenance
 
