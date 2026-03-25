@@ -23,7 +23,7 @@ To make this selection reproducible, we sorted reviews first by `word_count` and
 
 ### Population and sample
 
-The full IMDb review corpus in our processed dataset is the broader corpus we work from. For inference, we selected two samples from that corpus: the 1,000 shortest reviews and the 1,000 longest reviews. We then used bootstrap resampling within these two groups to estimate the stability of the difference in mean happiness.
+The complete IMDb review corpus in our processed dataset serves as the representation of the larger dataset we drew from. For inference, we selected two samples from that corpus: the 1,000 shortest reviews and the 1,000 longest reviews. We then used bootstrap resampling within these two groups to estimate the stability of the difference in mean happiness.
 
 ### Happiness scoring
 
