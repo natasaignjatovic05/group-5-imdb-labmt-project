@@ -106,6 +106,10 @@ The bootstrap histogram shows the distribution of the difference in mean happine
 
 The boxplot compares the distribution of review-level happiness scores in the short and long review groups. It shows whether one group tends to be systematically higher than the other, while also revealing how much overlap remains between them. This helps us evaluate whether any observed difference is broad and consistent or driven only by a small part of the sample.
 
+### Comparison and interpretation of the boxplot and bootstrap difference
+
+The bootstrap distribution of the difference in mean happiness scores (Long − Short) lies entirely below zero, indicating that short reviews consistently have higher happiness scores than long reviews. This confirms that the difference observed in the boxplot is statistically reliable and unlikely to be due to random variation.
+
 ## Critical Reflection
 
 This project uses a lexicon based method to measure review-level happiness in IMDb movie reviews. The method is useful for broad aggregate comparison because it provides a reproducible way to score large volumes of text using a fixed word list. At the same time, it has clear limitations. labMT scores words in isolation and therefore cannot fully capture context, negation, sarcasm, or narrative structure.
